@@ -10,11 +10,11 @@ RUN	apk update && \
 	composer global require hirak/prestissimo:^0.3 --optimize-autoloader && \
 	apk del curl openssl && \
   rm -rf \
-      /usr/include/php \
-      /usr/lib/php/build \
-      /var/cache/apk/* \
-      /tmp/* \
-      /root/.composer
+    /usr/include/php \
+    /usr/lib/php/build \
+    /var/cache/apk/* \
+    /tmp/* \
+    /root/.composer
 
 # Command
 CMD ["/usr/local/bin/composer", "--help"]
