@@ -16,5 +16,8 @@ RUN	apk update && \
     /tmp/* \
     /root/.composer
 
+WORKDIR /var/www/html
+VOLUME /var/www/html
+
 # Command
 CMD ["/usr/local/bin/composer", "--help"]
