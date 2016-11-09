@@ -1,0 +1,31 @@
+language: python
+
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+    - REPO=fortis/stackd-composer
+    - COMMIT=${TRAVIS_COMMIT::8}
+  matrix:
+    - PHP_VER=7.0
+
+install:
+  - mkdir -p /home/travis/.ssh
+  - ssh-keygen -t dsa -N '' -f /home/travis/.ssh/testkey
+  - chmod 700 /home/travis/.ssh
+  - docker build -t $REPO:$COMMIT .
+  - docker run -d -v /home/travis/.ssh:/mnt/ssh --name=composer $REPO:$COMMIT
+
+script:
+  - docker ps | grep -q "$REPO:$COMMIT"
+  - docker exec --user=82 composer composer --version
+  - docker exec --user=82 composer ssh -V
+  - docker exec --user=82 composer rsync --version
+  - docker exec --user=82 composer [ -f /home/www-data/.ssh/testkey ]
+  - docker exec --user=82 composer [ -f /home/www-data/.ssh/testkey.pub ]
+
+after_failure:
+  - docker logs composer
