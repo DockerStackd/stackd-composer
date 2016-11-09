@@ -17,6 +17,7 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         php7-pcntl \
         php7-json \
         php7-ctype \
+        php7-xml \
         php7-phar \
         php7-iconv \
         php7-openssl \
