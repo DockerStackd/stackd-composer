@@ -15,6 +15,11 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         unzip \
         php7 \
         php7-pcntl \
+        php7-json \
+        php7-phar \
+        php7-iconv \
+        php7-openssl \
+        php7-zip \
         && \
 
     # Create symlinks for backward compatibility
