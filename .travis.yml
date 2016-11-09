@@ -21,7 +21,10 @@ install:
 
 script:
   - docker ps | grep -q "$REPO:$COMMIT"
-  - docker exec -composer composer --version
+  - docker exec composer composer --version
+  - docker exec composer ssh -V
+  - docker exec composer [ -f /home/www-data/.ssh/testkey ]
+  - docker exec composer [ -f /home/www-data/.ssh/testkey.pub ]
 
 after_failure:
   - docker logs composer
