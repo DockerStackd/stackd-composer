@@ -1,7 +1,6 @@
 FROM alpine:edge
 MAINTAINER Alan Bondarchuk <imacoda@gmail.com>
 
-# Let's roll
 # Install packages
 RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories && \
     echo 'http://alpine.gliderlabs.com/alpine/edge/community' >> /etc/apk/repositories && \
@@ -11,46 +10,11 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         libressl \
         ca-certificates \
         openssh-client \
-#        rsync \
         git \
         curl \
         unzip \
-#        wget \
-#        perl \
-#        pcre \
-#        imap \
-#        mariadb-client \
-#        supervisor \
-#        nodejs \
-
-        # PHP packages
         php7 \
         php7-pcntl \
-#        php7-session \
-#        php7-xml \
-#        php7-ctype \
-#        php7-json \
-#        php7-posix \
-#        php7-curl \
-#        php7-dom \
-#        php7-pdo \
-#        php7-pdo_mysql \
-#        php7-sockets \
-#        php7-zlib \
-#        php7-mcrypt \
-#        php7-mysqli \
-#        php7-bz2 \
-#        php7-phar \
-#        php7-openssl \
-#        php7-posix \
-#        php7-zip \
-#        php7-calendar \
-#        php7-iconv \
-#        php7-soap \
-#        php7-pear \
-#        php7-mbstring \
-#        php7-ldap \
-#        php7-bcmath \
         && \
 
     # Create symlinks for backward compatibility
@@ -59,7 +23,7 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
     # Install composer
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     chmod +x /usr/local/bin/composer && \
-    composer global require hirak/prestissimo:^0.3 --optimize-autoloader && \
+    composer global require hirak/prestissimo --optimize-autoloader && \
 
     # Cleanup
     apk del --purge \
