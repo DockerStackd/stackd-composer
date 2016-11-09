@@ -21,11 +21,7 @@ install:
 
 script:
   - docker ps | grep -q "$REPO:$COMMIT"
-  - docker exec --user=82 composer composer --version
-  - docker exec --user=82 composer ssh -V
-  - docker exec --user=82 composer rsync --version
-  - docker exec --user=82 composer [ -f /home/www-data/.ssh/testkey ]
-  - docker exec --user=82 composer [ -f /home/www-data/.ssh/testkey.pub ]
+  - docker exec -composer composer --version
 
 after_failure:
   - docker logs composer
