@@ -59,7 +59,7 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
     # Install composer
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     chmod +x /usr/local/bin/composer && \
-    composer global require hirak/prestissimo:^0.3 --optimize-autoloader&& \
+    composer global require hirak/prestissimo:^0.3 --optimize-autoloader && \
 
     # Cleanup
     apk del --purge \
