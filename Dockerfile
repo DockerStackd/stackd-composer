@@ -11,12 +11,13 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         libressl \
         ca-certificates \
         openssh-client \
-        rsync \
+#        rsync \
         git \
         curl \
-        wget \
-        perl \
-        pcre \
+        unzip \
+#        wget \
+#        perl \
+#        pcre \
 #        imap \
 #        mariadb-client \
 #        supervisor \
@@ -26,7 +27,6 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         php7 \
         php7-pcntl \
 #        php7-session \
-        php7-pcntl \
 #        php7-xml \
 #        php7-ctype \
 #        php7-json \
@@ -53,16 +53,13 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
 #        php7-bcmath \
         && \
 
-    # Intall NPM
-    npm install -g np casperjs && \
-
     # Create symlinks for backward compatibility
     ln -sf /usr/bin/php7 /usr/bin/php && \
 
     # Install composer
-    	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    	chmod +x /usr/local/bin/composer && \
-    	composer global require hirak/prestissimo:^0.3 --optimize-autoloader && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    chmod +x /usr/local/bin/composer && \
+    composer global require hirak/prestissimo:^0.3 --optimize-autoloader&& \
 
     # Cleanup
     apk del --purge \
