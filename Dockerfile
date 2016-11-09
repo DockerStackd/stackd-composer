@@ -20,6 +20,8 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         php7-iconv \
         php7-openssl \
         php7-zip \
+        php7-zlib \
+        php7-curl \
         && \
 
     # Create symlinks for backward compatibility
