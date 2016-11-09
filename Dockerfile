@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM fortis/stackd-php-cli
 MAINTAINER Alan Bondarchuk <imacoda@gmail.com>
 
 # Install packages
@@ -12,26 +12,6 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         openssh-client \
         git \
         curl \
-        unzip \
-        php7 \
-        php7-pcntl \
-        php7-json \
-        php7-ctype \
-        php7-session \
-        php7-dom \
-        php7-xml \
-        php7-mcrypt \
-        php7-phar \
-        php7-iconv \
-        php7-openssl \
-        php7-zip \
-        php7-zlib \
-        php7-curl \
-        php7-pdo \
-        && \
-
-    # Create symlinks for backward compatibility
-    ln -sf /usr/bin/php7 /usr/bin/php && \
 
     # Install composer
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
@@ -49,8 +29,6 @@ RUN echo 'http://alpine.gliderlabs.com/alpine/edge/main' > /etc/apk/repositories
         && \
 
     rm -rf \
-        /usr/include/php \
-        /usr/lib/php/build \
         /var/cache/apk/* \
         /tmp/* \
         /root/.composer
